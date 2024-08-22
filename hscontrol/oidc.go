@@ -431,6 +431,7 @@ func validateOIDCAllowedGroups(
 		}
 
 		log.Trace().Msg("authenticated principal not in any allowed groups")
+		log.Trace().Msg(fmt.Sprintf("present groups: %v", claims.Groups))
 		writer.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		writer.WriteHeader(http.StatusBadRequest)
 		_, err := writer.Write([]byte("unauthorized principal (allowed groups)"))
